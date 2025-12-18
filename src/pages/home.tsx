@@ -1,14 +1,19 @@
 import { motion } from "framer-motion";
-import { Check, Star, Download, Smartphone, Cloud, Shield, Menu, X, Feather } from "lucide-react";
+import { Check, Star, Download, Smartphone, Cloud, Shield, Menu, X, Feather, Brain, TrendingUp, Sparkles, HelpCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 // Images
-import heroImage from "../assets/mobile_app_hero_with_blue_theme.png";
-import iconSync from "../assets/minimalist_icon_for_sync_feature.png";
-import iconSecurity from "../assets/minimalist_icon_for_security_feature.png";
+import heroImage from "../assets/Hero.png";
+
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -83,21 +88,21 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium bg-blue-50 text-blue-700 border-blue-100 rounded-full">
-                #1 Editor's Choice App
+                #1 Learning Platform 2025
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] mb-6 text-gray-900">
-                Capture your thoughts. <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Instantly.</span>
+                Learn anything. <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Anytime, anywhere.</span>
               </h1>
               <p className="text-xl text-gray-500 mb-10 max-w-lg leading-relaxed">
-                The most beautiful way to write, organize, and share your ideas on mobile. Distraction-free and synced everywhere.
+                Practice with interactive sessions tailored to your goals and get AI-powered guidance 24/7. Personalized learning that adapts to your pace and style.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="rounded-full bg-gray-900 hover:bg-gray-800 text-white px-8 h-14 text-lg shadow-lg hover:shadow-xl transition-all">
                   <Smartphone className="mr-2 w-5 h-5" /> Download for iOS
                 </Button>
                 <Button size="lg" variant="outline" className="rounded-full border-gray-200 hover:bg-white hover:border-gray-300 text-gray-700 px-8 h-14 text-lg glass-button">
-                  Download for Android
+                 <Smartphone className="mr-2 w-5 h-5" /> Download for Android
                 </Button>
               </div>
               
@@ -109,7 +114,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <p>Loved by 1M+ writers</p>
+                <p>Trusted by 500K+ learners worldwide</p>
               </div>
             </motion.div>
 
@@ -119,41 +124,12 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="relative hidden md:block"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 blur-3xl rounded-full transform translate-y-12"></div>
-              <div className="relative z-10 transform hover:-translate-y-2 transition-transform duration-700">
-                <img src={heroImage} alt="Quill App Interface" className="w-full max-w-md mx-auto drop-shadow-2xl" />
-                
-                {/* Floating Badge 1 */}
-                <motion.div 
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute top-20 -right-4 glass p-4 rounded-2xl flex items-center gap-3 shadow-lg max-w-[200px]"
-                >
-                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                    <Cloud className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 font-medium">Status</p>
-                    <p className="text-sm font-bold text-gray-900">Synced to Cloud</p>
-                  </div>
-                </motion.div>
-
-                 {/* Floating Badge 2 */}
-                 <motion.div 
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="absolute bottom-32 -left-4 glass p-4 rounded-2xl flex items-center gap-3 shadow-lg"
-                >
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                    <Shield className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 font-medium">Privacy</p>
-                    <p className="text-sm font-bold text-gray-900">End-to-End Encrypted</p>
-                  </div>
-                </motion.div>
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 blur-3xl rounded-full transform translate-y-12 animate-pulse"></div>
+              
+              {/* Main image container */}
+              <div className="relative z-10 transform hover:-translate-y-2 hover:scale-105 transition-all duration-700">
+                <img src={heroImage} alt="Quill App Interface" className="w-full h-full object-contain drop-shadow-2xl" />
               </div>
             </motion.div>
           </div>
@@ -161,16 +137,34 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 relative overflow-hidden bg-white/50">
+      <section id="features" className="py-24 relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             variants={fadeInUp}
             initial="initial"
             whileInView="whileInView"
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Designed for Focus</h2>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto">Everything you need to write your masterpiece, nothing to get in your way.</p>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block"
+            >
+              <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-cyan-500 text-white border-0 px-6 py-2 text-sm font-semibold">
+                ✨ Why Choose Us
+              </Badge>
+            </motion.div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 bg-clip-text">
+              Learn Smarter, Not Harder
+            </h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">Powerful features designed to accelerate your learning journey and help you achieve your goals.</p>
           </motion.div>
 
           <motion.div 
@@ -182,33 +176,75 @@ export default function Home() {
           >
             {[
               { 
-                icon: <img src={iconSync} className="w-12 h-12 object-contain" alt="Sync" />, 
-                title: "Seamless Sync", 
-                desc: "Start on your phone, finish on your tablet. Your words are always with you, everywhere you go." 
+                icon: <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white shadow-lg"><Brain className="w-7 h-7" /></div>, 
+                title: "AI-Powered Sessions", 
+                desc: "Get instant feedback and personalized recommendations with our advanced AI tutor that adapts to your learning style.",
+                gradient: "from-blue-500 to-cyan-500",
+                glowColor: "blue"
               },
               { 
-                icon: <img src={iconSecurity} className="w-12 h-12 object-contain" alt="Security" />, 
-                title: "Private & Secure", 
-                desc: "Your thoughts are personal. We use military-grade encryption to keep your data safe and private." 
+                icon: <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white shadow-lg"><TrendingUp className="w-7 h-7" /></div>, 
+                title: "Track Your Progress", 
+                desc: "Monitor your improvement with detailed analytics and insights. See your growth and stay motivated every step of the way.",
+                gradient: "from-purple-500 to-pink-500",
+                glowColor: "purple"
               },
               { 
-                icon: <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"><Feather className="w-6 h-6" /></div>, 
-                title: "Beautiful Typography", 
-                desc: "Choose from our curated list of premium fonts designed for optimal reading and writing experience." 
+                icon: <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center text-white shadow-lg"><Sparkles className="w-7 h-7" /></div>, 
+                title: "Interactive Practice", 
+                desc: "Engage with hands-on exercises, real-world scenarios, and interactive challenges designed to reinforce your learning.",
+                gradient: "from-orange-500 to-red-500",
+                glowColor: "orange"
               }
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}
                 variants={fadeInUp}
-                className="glass-card p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 border-t-4 border-t-transparent hover:border-t-blue-500"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="group relative"
               >
-                <div className="mb-6">
-                  {feature.icon}
+                {/* Glow effect on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-3xl blur-xl transition-opacity duration-500`}></div>
+                
+                {/* Card */}
+                <div className="relative glass-card p-8 rounded-3xl border border-gray-100 group-hover:border-transparent group-hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                  {/* Top gradient line */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  
+                  {/* Icon container */}
+                  <div className="mb-6 relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                    <div className="relative">
+                      {feature.icon}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-500 transition-all duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-500 leading-relaxed group-hover:text-gray-600 transition-colors duration-300">
+                    {feature.desc}
+                  </p>
+
+                  {/* Decorative corner element */}
+                  <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tl-full"></div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-16"
+          >
+            <p className="text-gray-500 mb-6">Ready to experience the future of learning?</p>
+            <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              Explore All Features →
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -318,6 +354,114 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 relative overflow-hidden bg-white">
+        <div className="container mx-auto px-6 max-w-4xl relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block"
+            >
+              <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-cyan-500 text-white border-0 px-6 py-2 text-sm font-semibold">
+                <HelpCircle className="w-4 h-4 mr-2 inline" />
+                FAQ
+              </Badge>
+            </motion.div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              Everything you need to know about our learning platform
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="glass-card border-0 rounded-2xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors py-6">
+                  How does the AI-powered learning work?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  Our AI analyzes your learning patterns, strengths, and areas for improvement to create personalized practice sessions. It adapts in real-time, providing instant feedback and tailored recommendations to help you learn more efficiently.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="glass-card border-0 rounded-2xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors py-6">
+                  Can I track my progress over time?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  Absolutely! Our platform provides detailed analytics and insights showing your improvement across different skills. You'll see visual progress charts, milestone achievements, and personalized reports to keep you motivated and on track.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="glass-card border-0 rounded-2xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors py-6">
+                  What types of practice sessions are available?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  We offer a wide variety of interactive practice sessions including hands-on exercises, real-world scenarios, quizzes, coding challenges, and simulations. Each session is designed to reinforce your learning through active engagement and practical application.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="glass-card border-0 rounded-2xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors py-6">
+                  Is there a mobile app available?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  Yes! Our platform is available on iOS and Android, allowing you to learn on the go. All your progress syncs seamlessly across devices, so you can start a session on your phone and continue on your tablet or computer.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="glass-card border-0 rounded-2xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors py-6">
+                  Can I cancel my subscription anytime?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  Yes, you can cancel your subscription at any time with no penalties. If you cancel, you'll continue to have access to Pro features until the end of your current billing period. You can also downgrade to our free Basic plan to keep your progress and continue learning.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6" className="glass-card border-0 rounded-2xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors py-6">
+                  Do you offer certificates upon completion?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  Pro members receive verified certificates for completed learning paths and milestones. These certificates can be shared on LinkedIn and other professional platforms to showcase your newly acquired skills to potential employers.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+
+          {/* Additional help section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-16 text-center glass-card p-8 rounded-3xl"
+          >
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
+            <p className="text-gray-600 mb-6">Our support team is here to help you get started.</p>
+            <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+              Contact Support
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Footer */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -330,11 +474,11 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight">Write better, everywhere.</h2>
-            <p className="text-xl text-gray-500 mb-10">Join the community of writers finding their focus with Quill.</p>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 tracking-tight">Start learning today.</h2>
+            <p className="text-xl text-gray-500 mb-10">Join thousands of learners mastering new skills with AI-powered practice sessions.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" className="rounded-full h-14 px-10 text-lg bg-gray-900 hover:bg-gray-800 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                <Download className="mr-2 w-5 h-5" /> Download App
+                <Download className="mr-2 w-5 h-5" /> Get Started Free
               </Button>
             </div>
           </motion.div>
