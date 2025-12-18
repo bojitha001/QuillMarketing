@@ -1,0 +1,11 @@
+// public/robots.txt
+// This file tells search engines which pages they can and cannot crawl
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://quillmarketing.com/sitemap.xml

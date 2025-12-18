@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Star, Download, Smartphone, Cloud, Shield, Menu, X, Feather, Brain, TrendingUp, Sparkles, HelpCircle } from "lucide-react";
+import { Check, Star, Download, Smartphone, Menu, X, Feather, Brain, TrendingUp, Sparkles, HelpCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +10,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { OrganizationSchema } from "@/components/StructuredData";
 
 // Images
 import heroImage from "../assets/Hero.png";
@@ -36,7 +38,16 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background font-sans overflow-x-hidden selection:bg-blue-100">
+    <>
+      <SEO 
+        title="QuillMarketing - Transform Your Digital Presence"
+        description="Elevate your brand with QuillMarketing's cutting-edge digital marketing solutions. Expert SEO, content strategy, and innovative marketing campaigns that drive results."
+        keywords="digital marketing, SEO optimization, content marketing, brand strategy, marketing solutions, social media marketing"
+        ogUrl="https://quillmarketing.com/"
+        canonicalUrl="https://quillmarketing.com/"
+      />
+      <OrganizationSchema />
+      <div className="min-h-screen bg-background font-sans overflow-x-hidden selection:bg-blue-100">
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass border-b-0 h-20 flex items-center">
@@ -504,5 +515,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
