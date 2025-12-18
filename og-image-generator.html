@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Image Generator - QuillMarketing</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f3f4f6;
+      padding: 20px;
+    }
+    
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 800px;
+    }
+    
+    h1 {
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+    
+    .canvas-container {
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background: linear-gradient(to right, #2563eb, #06b6d4);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    
+    button:hover {
+      opacity: 0.9;
+    }
+    
+    .info {
+      background: #dbeafe;
+      border-left: 4px solid #2563eb;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 OG Image Generator</h1>
+    <p>Create a simple Open Graph image for QuillMarketing (1200×630px)</p>
+    
+    <div class="canvas-container">
+      <canvas id="ogCanvas" width="1200" height="630"></canvas>
+    </div>
+    
+    <div class="controls">
+      <input type="text" id="titleInput" placeholder="Main Title" value="QuillMarketing">
+      <input type="text" id="subtitleInput" placeholder="Subtitle" value="Modern Marketing Solutions">
+      <button onclick="generateImage()">🔄 Update</button>
+      <button onclick="downloadImage()">⬇️ Download</button>
+    </div>
+    
+    <div class="info">
+      <strong>Instructions:</strong>
+      <ol style="margin: 10px 0 0 20px; padding: 0;">
+        <li>Customize the title and subtitle above</li>
+        <li>Click "Update" to see changes</li>
+        <li>Click "Download" to save as og-image.jpg</li>
+        <li>Place the downloaded file in your <code>public/</code> folder</li>
+        <li>Deploy to Vercel and test with Facebook Debugger</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('ogCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function generateImage() {
+      const title = document.getElementById('titleInput').value || 'QuillMarketing';
+      const subtitle = document.getElementById('subtitleInput').value || 'Modern Marketing Solutions';
+      
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+      gradient.addColorStop(0, '#dbeafe');
+      gradient.addColorStop(1, '#e0f2fe');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 1200, 630);
+      
+      // Decorative circles
+      ctx.fillStyle = 'rgba(37, 99, 235, 0.1)';
+      ctx.beginPath();
+      ctx.arc(1000, 100, 200, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.fillStyle = 'rgba(6, 182, 212, 0.1)';
+      ctx.beginPath();
+      ctx.arc(200, 500, 150, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Icon/Logo placeholder
+      ctx.fillStyle = '#2563eb';
+      ctx.beginPath();
+      ctx.roundRect(500, 150, 200, 200, 20);
+      ctx.fill();
+      
+      // Feather icon representation (simple)
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.moveTo(600, 200);
+      ctx.lineTo(600, 300);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(560, 220);
+      ctx.quadraticCurveTo(580, 230, 600, 250);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(640, 220);
+      ctx.quadraticCurveTo(620, 230, 600, 250);
+      ctx.stroke();
+      
+      // Title
+      ctx.fillStyle = '#1f2937';
+      ctx.font = 'bold 72px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, 600, 430);
+      
+      // Subtitle
+      ctx.fillStyle = '#4b5563';
+      ctx.font = '36px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.fillText(subtitle, 600, 490);
+      
+      // Tagline
+      ctx.fillStyle = '#2563eb';
+      ctx.font = 'italic 24px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.fillText('Transform Your Digital Presence', 600, 540);
+    }
+
+    function downloadImage() {
+      canvas.toBlob(function(blob) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'og-image.jpg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert('Image downloaded! Place it in your public/ folder.');
+      }, 'image/jpeg', 0.9);
+    }
+
+    // CanvasRenderingContext2D roundRect polyfill
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+        this.beginPath();
+        this.moveTo(x + radius, y);
+        this.lineTo(x + width - radius, y);
+        this.quadraticCurveTo(x + width, y, x + width, y + radius);
+        this.lineTo(x + width, y + height - radius);
+        this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        this.lineTo(x + radius, y + height);
+        this.quadraticCurveTo(x, y + height, x, y + height - radius);
+        this.lineTo(x, y + radius);
+        this.quadraticCurveTo(x, y, x + radius, y);
+        this.closePath();
+      };
+    }
+
+    // Generate initial image
+    generateImage();
+  </script>
+</body>
+</html>

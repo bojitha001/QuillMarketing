@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://quillmarketing.com/</loc>
+    <loc>https://quill-marketing-9nvg.vercel.app/</loc>
     <lastmod>2025-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -9,7 +9,7 @@
   <!-- Add more pages here as you create them -->
   <!-- Example:
   <url>
-    <loc>https://quillmarketing.com/about</loc>
+    <loc>https://quill-marketing-9nvg.vercel.app/about</loc>
     <lastmod>2025-12-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

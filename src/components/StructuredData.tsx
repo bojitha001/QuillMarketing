@@ -10,8 +10,8 @@ interface OrganizationSchemaProps {
 
 export function OrganizationSchema({
   name = "QuillMarketing",
-  url = "https://quillmarketing.com",
-  logo = "https://quillmarketing.com/logo.png",
+  url = "https://quill-marketing-9nvg.vercel.app",
+  logo = "https://quill-marketing-9nvg.vercel.app/logo.png",
   description = "Transform your business with QuillMarketing's innovative digital marketing solutions.",
   socialLinks = [
     "https://twitter.com/quillmarketing",
@@ -127,7 +127,7 @@ export function ArticleSchema({
       name: "QuillMarketing",
       logo: {
         "@type": "ImageObject",
-        url: "https://quillmarketing.com/logo.png"
+        url: "https://quill-marketing-9nvg.vercel.app/logo.png"
       }
     }
   }), [headline, description, image, datePublished, dateModified, author]);

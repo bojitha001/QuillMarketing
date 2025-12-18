@@ -8,4 +8,4 @@ Disallow: /api/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://quillmarketing.com/sitemap.xml
+Sitemap: https://quill-marketing-9nvg.vercel.app/sitemap.xml

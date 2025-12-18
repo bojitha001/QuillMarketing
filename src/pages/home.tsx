@@ -43,8 +43,8 @@ export default function Home() {
         title="QuillMarketing - Transform Your Digital Presence"
         description="Elevate your brand with QuillMarketing's cutting-edge digital marketing solutions. Expert SEO, content strategy, and innovative marketing campaigns that drive results."
         keywords="digital marketing, SEO optimization, content marketing, brand strategy, marketing solutions, social media marketing"
-        ogUrl="https://quillmarketing.com/"
-        canonicalUrl="https://quillmarketing.com/"
+        ogUrl="https://quill-marketing-9nvg.vercel.app/"
+        canonicalUrl="https://quill-marketing-9nvg.vercel.app/"
       />
       <OrganizationSchema />
       <div className="min-h-screen bg-background font-sans overflow-x-hidden selection:bg-blue-100">
