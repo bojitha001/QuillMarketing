@@ -11,18 +11,43 @@
 - Favicon
 
 ### 2. **Dynamic SEO Component** (src/components/SEO.tsx)
-- Reusable SEO component using react-helmet-async
-- Customizable per page
+- React 19-compatible SEO component using native DOM APIs
+- No external dependencies required
+- Reusable per page
+- Customizable with props
 - Automatic title formatting
 - Social media optimization
 
-### 3. **robots.txt** (public/robots.txt)
+### 3. **Structured Data Components** (src/components/StructuredData.tsx)
+- React 19-compatible using useEffect and useMemo
+- Organization Schema for homepage
+- WebPage Schema for static pages
+- Article Schema for blog posts
+- Breadcrumb Schema for navigation
+
+### 4. **robots.txt** (public/robots.txt)
 - Controls which pages search engines can crawl
 - Includes sitemap reference
 
-### 4. **sitemap.xml** (public/sitemap.xml)
+### 5. **sitemap.xml** (public/sitemap.xml)
 - XML sitemap for search engines
 - Lists all pages with priority and update frequency
+
+---
+
+## 🎯 Why We Use Native DOM APIs (React 19 Compatible)
+
+Instead of using `react-helmet-async` which doesn't support React 19 yet, we've implemented a custom solution using:
+- **useEffect** to manipulate the DOM directly
+- **useMemo** to optimize schema object creation
+- **Native DOM APIs** to update meta tags dynamically
+- **No external dependencies** - fully compatible with React 19
+
+This approach is:
+- ✅ **React 19 compatible**
+- ✅ **No dependency conflicts**
+- ✅ **Lightweight and fast**
+- ✅ **Full SEO feature support**
 
 ---
 

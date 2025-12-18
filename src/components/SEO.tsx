@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 interface SEOProps {
   title?: string;
@@ -23,31 +23,61 @@ export function SEO({
 }: SEOProps) {
   const siteTitle = title.includes('QuillMarketing') ? title : `${title} | QuillMarketing`;
   
-  return (
-    <Helmet>
-      {/* Primary Meta Tags */}
-      <title>{siteTitle}</title>
-      <meta name="title" content={siteTitle} />
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
-      
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content={type} />
-      <meta property="og:url" content={ogUrl} />
-      <meta property="og:title" content={siteTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
-      
-      {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={ogUrl} />
-      <meta property="twitter:title" content={siteTitle} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={ogImage} />
-      
-      {/* Canonical URL */}
-      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    </Helmet>
-  );
+  useEffect(() => {
+    // Update document title
+    document.title = siteTitle;
+    
+    // Helper function to update or create meta tags
+    const updateMetaTag = (selector: string, attribute: string, value: string) => {
+      let element = document.querySelector(selector);
+      if (!element) {
+        element = document.createElement('meta');
+        if (attribute === 'property') {
+          element.setAttribute('property', selector.replace('meta[property="', '').replace('"]', ''));
+        } else {
+          element.setAttribute('name', selector.replace('meta[name="', '').replace('"]', ''));
+        }
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', value);
+    };
+    
+    // Update primary meta tags
+    updateMetaTag('meta[name="title"]', 'name', siteTitle);
+    updateMetaTag('meta[name="description"]', 'name', description);
+    updateMetaTag('meta[name="keywords"]', 'name', keywords);
+    
+    if (noindex) {
+      updateMetaTag('meta[name="robots"]', 'name', 'noindex, nofollow');
+    } else {
+      updateMetaTag('meta[name="robots"]', 'name', 'index, follow');
+    }
+    
+    // Update Open Graph tags
+    updateMetaTag('meta[property="og:type"]', 'property', type);
+    updateMetaTag('meta[property="og:url"]', 'property', ogUrl);
+    updateMetaTag('meta[property="og:title"]', 'property', siteTitle);
+    updateMetaTag('meta[property="og:description"]', 'property', description);
+    updateMetaTag('meta[property="og:image"]', 'property', ogImage);
+    
+    // Update Twitter tags
+    updateMetaTag('meta[property="twitter:card"]', 'property', 'summary_large_image');
+    updateMetaTag('meta[property="twitter:url"]', 'property', ogUrl);
+    updateMetaTag('meta[property="twitter:title"]', 'property', siteTitle);
+    updateMetaTag('meta[property="twitter:description"]', 'property', description);
+    updateMetaTag('meta[property="twitter:image"]', 'property', ogImage);
+    
+    // Update canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (canonicalUrl) {
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', canonicalUrl);
+    }
+  }, [siteTitle, description, keywords, ogImage, ogUrl, canonicalUrl, type, noindex]);
+  
+  return null;
 }
